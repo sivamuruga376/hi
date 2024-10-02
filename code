@@ -328,3 +328,493 @@ Dim resume As String = "<div style='font-family: Arial, sans-serif; line-height:
 lblResult.Text = resume
 End Sub
 End Class
+
+
+
+
+1st PROGRAM
+Public Class Form1
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles
+btnCheck.Click
+Dim inputChar As String = txtCharacter.Text.ToLower()
+If inputChar.Length = 1 Then
+If "aeiou".Contains(inputChar) Then
+lblResult.Text = "It is a vowel."
+Else
+lblResult.Text = "It is not a vowel."
+End If
+Else
+lblResult.Text = "Please enter a single character."
+End If
+End Sub
+End Class
+2ND
+Public Class Form1
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles
+Button1.Click
+Dim num1String As String = InputBox("Enter the first number:", "Input First
+Number")
+Dim num2String As String = InputBox("Enter the second number:", "Input
+Second Number")
+Dim num1 As Double
+Dim num2 As Double
+If Double.TryParse(num1String, num1) AndAlso Double.TryParse(num2String,
+num2) Then
+Dim result As Double = num1 + num2
+MsgBox("The sum of " & num1.ToString() & " and " & num2.ToString() & " is "
+& result.ToString(), MsgBoxStyle.Information, "Addition Result")
+Else
+MsgBox("Please enter valid numbers.", MsgBoxStyle.Critical, "Invalid Input")
+End If
+End Sub
+End Class
+3rd in next page
+Public Class Form1
+Dim firstNum As Decimal
+Dim secondNum As Decimal
+Dim operation As String
+Private Sub btnNumber_Click(sender As Object, e As EventArgs) Handles
+Button1.Click,Button0.Click, Button2.Click, Button3.Click, Button4.Click,Button5.Click,
+Button6.Click, Button7.Click, Button8.Click, Button9.Click
+Dim btn As Button = CType(sender, Button)
+txtDisplay.Text &= btn.Text
+End Sub
+Private Sub btnOperator_Click(sender As Object, e As EventArgs) Handles
+btnAdd.Click, btnSubtract.Click, btnMultiply.Click, btnDivide.Click
+firstNum = Decimal.Parse(txtDisplay.Text)
+Dim btn As Button = CType(sender, Button)
+operation = btn.Text
+txtDisplay.Clear()
+End Sub
+Private Sub btnEquals_Click(sender As Object, e As EventArgs) Handles
+btnEquals.Click
+secondNum = Decimal.Parse(txtDisplay.Text)
+Select Case operation
+Case "+"
+txtDisplay.Text = (firstNum + secondNum).ToString()
+Case "-"
+txtDisplay.Text = (firstNum - secondNum).ToString()
+Case "*"
+txtDisplay.Text = (firstNum * secondNum).ToString()
+Case "/"
+If secondNum = 0 Then
+MessageBox.Show("Cannot divide by zero", "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Error)
+Else
+txtDisplay.Text = (firstNum / secondNum).ToString()
+End If
+End Select
+End Sub
+Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles
+btnClear.Click
+txtDisplay.Clear()
+firstNum = 0
+secondNum = 0
+operation = ""
+End Sub
+End Class
+4TH
+Public Class Form1
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles
+btnReverse.Click
+Dim number As String = txtNumber.Text
+Dim reversedNumber As String = StrReverse(number)
+lblResult.Text = "Reversed: " & reversedNumber
+End Sub
+End Class
+5TH
+Public Class Form1
+Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles
+btnSubmit.Click
+lblValidationMessage.Text = ""
+If String.IsNullOrEmpty(label2.Text) Then
+lblValidationMessage.Text &= "Name is required." & vbCrLf
+End If
+Dim age As Integer
+If Integer.TryParse(txtAge.Text, age) Then
+If age < 18 Or age > 100 Then
+lblValidationMessage.Text &= "Age must abvove 18." & vbCrLf
+End If
+Else
+lblValidationMessage.Text &= "Please enter a valid age." & vbCrLf
+End If
+Dim emailPattern As String =
+"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+If Not System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text,
+emailPattern) Then
+lblValidationMessage.Text &= "Please enter a valid email address." & vbCrLf
+End If
+If lblValidationMessage.Text = "" Then
+lblValidationMessage.ForeColor = Color.Green
+lblValidationMessage.Text = "Form submitted successfully!"
+Else
+lblValidationMessage.ForeColor = Color.Red
+End If
+End Sub
+End Class
+6TH
+Public Class Form1
+Private Sub Form1_Load(sender As Object, e As EventArgs) Handles
+MyBase.Load
+cmbImages.Items.Add("Image1")
+cmbImages.Items.Add("Image2")
+cmbImages.Items.Add("Image3")
+cmbImages.SelectedIndex = 0
+End Sub
+Private Sub btnShowImage_Click(sender As Object, e As EventArgs) Handles
+btnShowImage.Click
+Dim selectedImage As String = cmbImages.SelectedItem.ToString()
+Dim imagePath As String = System.IO.Path.Combine(Application.StartupPath,
+selectedImage & ".jpg")
+If System.IO.File.Exists(imagePath) Then
+picImage.Image = Image.FromFile(imagePath)
+Else
+MessageBox.Show("Image file not found: " & imagePath, "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Error)
+End If
+End Sub
+End Class
+7TH
+Public Class Form1
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles
+btnToUpper.Click
+Dim inputString As String = txtInput.Text
+lblResult.Text = inputString.ToUpper()
+End Sub
+Private Sub btnToLower_Click(sender As Object, e As EventArgs) Handles
+btnToLower.Click
+Dim inputString As String = txtInput.Text
+lblResult.Text = inputString.ToLower()
+End Sub
+End Class
+8TH
+Public Class WebForm1
+Inherits System.Web.UI.Page
+Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
+If Page.IsValid Then
+Response.Write("<script>alert('Sign-Up successful!');</script>")
+End If
+End Sub
+Protected Sub ValidateUsername(source As Object, args As
+ServerValidateEventArgs)
+Dim username As String = args.Value
+If System.Text.RegularExpressions.Regex.IsMatch(username, "[^a-zA-Z0-9]")
+Then
+args.IsValid = False ' Validation failed
+Else
+args.IsValid = True ' Validation passed
+End If
+End Sub
+End Class
+Design code
+<%@ Page Language="vb" AutoEventWireup="false"
+CodeBehind="WebForm1.aspx.vb" Inherits="WebApplication3.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title>Sign Up</title>
+<style>
+.form-container {
+width: 400px;
+margin: 0 auto;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 10px;
+}
+.error {
+color: red;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div class="form-container">
+<h2>Sign-Up Form</h2>
+<!-- Username -->
+<asp:Label ID="lblUsername" runat="server" Text="Username:"></asp:Label>
+<asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="rfvUsername" runat="server"
+ControlToValidate="txtUsername"
+ErrorMessage="Username is required."
+ForeColor="Red"></asp:RequiredFieldValidator>
+<br /><br />
+<!-- Email -->
+<asp:Label ID="lblEmail" runat="server" Text="Email Address:"></asp:Label>
+<asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="rfvEmail" runat="server"
+ControlToValidate="txtEmail"
+ErrorMessage="Email is required."
+ForeColor="Red"></asp:RequiredFieldValidator>
+<asp:RegularExpressionValidator ID="revEmail" runat="server"
+ControlToValidate="txtEmail"
+ErrorMessage="Invalid email format."
+ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+ForeColor="Red"></asp:RegularExpressionValidator>
+<br /><br />
+<!-- Password -->
+<asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>
+<asp:TextBox ID="txtPassword" runat="server"
+TextMode="Password"></asp:TextBox>
+<asp:RequiredFieldValidator ID="rfvPassword" runat="server"
+ControlToValidate="txtPassword"
+ErrorMessage="Password is required."
+ForeColor="Red"></asp:RequiredFieldValidator>
+<asp:RangeValidator
+ID="rvPasswordLength"
+runat="server"
+ControlToValidate="txtPassword"
+MinimumValue="6"
+MaximumValue="20"
+Type="Integer"
+ForeColor="Red">
+</asp:RangeValidator>
+<br /><br />
+<!-- Confirm Password -->
+<asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm
+Password:"></asp:Label>
+<asp:TextBox ID="txtConfirmPassword" runat="server"
+TextMode="Password"></asp:TextBox>
+<asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server"
+ControlToValidate="txtConfirmPassword"
+ErrorMessage="Confirmation password is required."
+ForeColor="Red"></asp:RequiredFieldValidator>
+<asp:CompareValidator ID="cvPasswordMatch" runat="server"
+ControlToValidate="txtConfirmPassword"
+ControlToCompare="txtPassword"
+ErrorMessage="Passwords do not match."
+ForeColor="Red"></asp:CompareValidator>
+<br /><br />
+<!-- Custom Validation (e.g., no special characters in username) -->
+<asp:CustomValidator ID="cvCustomUsername" runat="server"
+ControlToValidate="txtUsername"
+OnServerValidate="ValidateUsername"
+ErrorMessage="Username cannot contain special characters."
+ForeColor="Red"></asp:CustomValidator>
+<br /><br />
+<!-- Validation Summary -->
+<asp:ValidationSummary ID="vsSummary" runat="server"
+ForeColor="Red"
+HeaderText="Please correct the following errors:"
+ShowMessageBox="false"
+ShowSummary="true"></asp:ValidationSummary>
+<br /><br />
+<!-- Submit Button -->
+<asp:Button ID="btnSubmit" runat="server" Text="Sign Up"
+OnClick="btnSubmit_Click" />
+</div>
+</form>
+</body>
+</html>
+9th
+Public Class WebForm1
+Inherits System.Web.UI.Page
+Protected Sub chkout_Click(sender As Object, e As EventArgs)
+Dim sum As Integer = Val(lp2.Text) + Val(tb2.Text) + Val(sp2.Text)
+tot.Text = sum
+End Sub
+Protected Sub addtocart3_Click(sender As Object, e As EventArgs)
+sp1.Text = sp.Text
+sp2.Text = spp.Text
+End Sub
+Protected Sub addtocart2_Click(sender As Object, e As EventArgs)
+tb1.Text = tb.Text
+tb2.Text = tbp.Text
+End Sub
+Protected Sub addtocart1_Click(sender As Object, e As EventArgs)
+lp1.Text = lp.Text
+lp2.Text = lpp.Text
+End Sub
+Protected Sub Button1_Click(sender As Object, e As EventArgs)
+MsgBox("Order Placed Successfully !", MsgBoxStyle.Information, "ORDER")
+End Sub
+End Class
+Design code
+<%@ Page Language="vb" AutoEventWireup="false"
+CodeBehind="WebForm1.aspx.vb" Inherits="WebApplication5.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<asp:Image ID="Image1" runat="server" Height="94px" Width="123px"
+ImageUrl="~/lap.jpg" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="lp" runat="server" Text="Laptop Rs."></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="lpp" runat="server" Text="40000"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="addtocart1" runat="server" Text="Add to Cart"
+OnClick="addtocart1_Click" />
+<br /> <br />
+<asp:Image ID="Image2" runat="server" Height="111px" Width="120px"
+ImageUrl="~/tab.jpeg" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="tb" runat="server" Text="Tablet Rs."></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="tbp" runat="server" Text="15000"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="addtocart2" runat="server" Text="Add to Cart"
+OnClick="addtocart2_Click" />
+<br /> <br />
+<asp:Image ID="Image3" runat="server" Height="109px" Width="123px"
+ImageUrl="~/sp.jpeg" />/6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="sp" runat="server" Text="Smart phone Rs."></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Label ID="spp" runat="server" Text="25000"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="addtocart3" runat="server" Text="Add to Cart"
+OnClick="addtocart3_Click" />
+<br /> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="chkout" runat="server" Text="Check out" Width="155px"
+OnClick="chkout_Click" />
+<br /> <br />
+<asp:Label ID="Label1" runat="server" Text="CART"></asp:Label>
+<br /> <br />
+<asp:Label ID="lp1" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:Label ID="lp2" runat="server"></asp:Label> <br />
+<asp:Label ID="tb1" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:Label ID="tb2" runat="server"></asp:Label> <br />
+<asp:Label ID="sp1" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:Label ID="sp2" runat="server"></asp:Label> <br />
+<asp:Label ID="total" runat="server" Text="Total"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+<asp:Label ID="tot" runat="server"></asp:Label>
+<br /> <br />
+<asp:Button ID="Button1" runat="server" Text="Place Order"
+OnClick="Button1_Click" />
+</form>
+</body>
+</html>
+10th
+Public Class WebForm1
+Inherits System.Web.UI.Page
+Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
+Dim name As String = txtName.Text
+Dim email As String = txtEmail.Text
+Dim phone As String = txtPhone.Text
+Dim education As String = txtEducation.Text
+Dim experience As String = txtExperience.Text
+Dim skills As String = txtSkills.Text
+Dim resumeContent As String = "Name: " & name & Environment.NewLine &
+"Email: " & email & Environment.NewLine &
+"Phone: " & phone & Environment.NewLine & Environment.NewLine &
+"Education:" & Environment.NewLine & education & Environment.NewLine &
+"Experience:" & Environment.NewLine & experience & Environment.NewLine &
+Environment.NewLine &
+"Skills:" & Environment.NewLine & skills
+' Display the resume in the designated area
+lblResumeContent.InnerText = resumeContent
+divResume.Visible = True ' Show the resume section
+End Sub
+End Class
+Design code
+<%@ Page Language="vb" AutoEventWireup="false"
+CodeBehind="WebForm1.aspx.vb" Inherits="WebApplication4.WebForm1" %>
+<!DOCTYPE html>
+<script runat="server">
+</script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title>Resume Builder</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+}
+label {
+display: block;
+margin-top: 10px;
+}
+textarea {
+width: 100%;
+height: 100px;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<h2>Resume Builder</h2>
+<label for="txtName">Full Name:</label>
+<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+<label for="txtEmail">Email:</label>
+<asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+<label for="txtPhone">Phone:</label>
+<asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+<label for="txtEducation">Education:</label>
+<asp:TextBox ID="txtEducation" runat="server"
+TextMode="MultiLine"></asp:TextBox>
+<label for="txtExperience">Experience:</label>
+<asp:TextBox ID="txtExperience" runat="server"
+TextMode="MultiLine"></asp:TextBox>
+<label for="txtSkills">Skills:</label>
+<asp:TextBox ID="txtSkills" runat="server" TextMode="MultiLine"></asp:TextBox>
+<asp:Button ID="btnSubmit" runat="server" Text="Create Resume"
+OnClick="btnSubmit_Click" />
+<div id="divResume" runat="server" visible="false">
+<h3>Your Resume:</h3>
+<pre id="lblResumeContent" runat="server"></pre>
+</div>
+</div>
+</form>
+</body>
+</html>
+11th
+Imports MySql.Data.MySqlClient
+Public Class Form1
+Dim connectionString As String = "server=localhost;user id=root;
+password=root; database = employeedetails"
+Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles
+btnInsert.Click
+Dim connection As New MySqlConnection(connectionString)
+Try
+connection.Open()
+Dim query As String = "INSERT INTO employee (e_name, e_age,
+e_designation, e_salary)
+VALUES (@name,@age, @designation, @salary)"
+Dim cmd As New MySqlCommand(query, connection)
+cmd.Parameters.AddWithValue("@name", txtName.Text)
+cmd.Parameters.AddWithValue("@age", CInt(txtAge.Text))
+cmd.Parameters.AddWithValue("@designation", txtDesgn.Text)
+cmd.Parameters.AddWithValue("@salary", CDec(txtSal.Text))
+cmd.ExecuteNonQuery()
+MessageBox.Show("Employee details saved successfully!")
+Catch ex As MySqlException
+MessageBox.Show("An error occurred: " & ex.Message)
+Finally
+connection.Close()
+End Sub
+End Class
+12th
+Imports MySql.Data.MySqlClient
+Public Class Form1
+Dim connectionString As String = "server=localhost;user
+id=root;password=root;database=employeedetails"
+Private Sub btnRetrieve_Click(sender As Object, e As EventArgs) Handles
+btnRetrieve.Click
+Dim connection As New MySqlConnection(connectionString)
+Try
+connection.Open() ' Open the connection
+Dim query As String = "SELECT e_name, e_age, e_designation, e_salary
+FROM employee"
+Dim cmd As New MySqlCommand(query, connection)
+Dim adapter As New MySqlDataAdapter(cmd) ' Create a DataAdapter to fill a
+DataTable with the results
+Dim dataTable As New DataTable()
+adapter.Fill(dataTable) ' Fill the DataTable with the query result
+DataGridView1.DataSource = dataTable ' Bind the DataTable to the
+DataGridView to display the data
+Catch ex As MySqlException
+MessageBox.Show("An error occurred while retrieving data: " & ex.Message)
+Finally
+connection.Close() ' Close the connection
+End Try
+End Sub
+End Class
