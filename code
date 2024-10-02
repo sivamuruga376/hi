@@ -1,0 +1,330 @@
+.NET LAB
+VOWEL
+BUTTON-1 (CHECK) CODE
+Dim c As Char
+c = UCase(TextBox1.Text)
+If c = "A" Or c = "E" Or c = "I" Or c = "O" Or c = "U" Then
+TextBox2.Text = "VOWEL"
+Else
+TextBox2.Text = "NOT VOWEL"
+End If
+BUTTON-2 (RESET) CODE
+TextBox1.Text = ""
+TextBox2.Text = ""
+ADDITION
+BUTTON-1 (CLICK) CODE
+Dim a, b, c As Integer
+a = InputBox("Enter the a value")
+b = InputBox("Enter the b value")
+c = a + b
+MsgBox("The Addition of two numbers is" & c, vbInformation, "ADDITION")
+CALCULATOR
+Public Class Form1
+Private Sub ButtonClick(sender As Object, e As EventArgs) Handles B1.Click,
+B2.Click, B3.Click, B4.Click, B5.Click, B6.Click, B7.Click, B8.Click, B9.Click, B0.Click,
+Bplus.Click, Bminus.Click, Bmulti.Click, Bdiv.Click
+Dim button As Button = CType(sender, Button)
+If button.Name = "B1" Then
+TextBox1.Text = TextBox1.Text + "1"
+End If
+If button.Name = "B2" Then
+TextBox1.Text = TextBox1.Text + "2"
+End If
+If button.Name = "B3" Then
+TextBox1.Text = TextBox1.Text + "3"
+End If
+If button.Name = "B4" Then
+TextBox1.Text = TextBox1.Text + "4"
+End If
+If button.Name = "B5" Then
+TextBox1.Text = TextBox1.Text + "5"
+End If
+If button.Name = "B6" Then
+TextBox1.Text = TextBox1.Text + "6"
+End If
+If button.Name = "B7" Then
+TextBox1.Text = TextBox1.Text + "7"
+End If
+If button.Name = "B8" Then
+TextBox1.Text = TextBox1.Text + "8"
+End If
+If button.Name = "B9" Then
+TextBox1.Text = TextBox1.Text + "9"
+End If
+If button.Name = "B0" Then
+TextBox1.Text = TextBox1.Text + "0"
+End If
+If button.Name = "Bplus" Then
+TextBox1.Text = TextBox1.Text + "+"
+End If
+If button.Name = "Bminus" Then
+TextBox1.Text = TextBox1.Text + "-"
+End If
+If button.Name = "Bmulti" Then
+TextBox1.Text = TextBox1.Text + "*"
+End If
+If button.Name = "Bdiv" Then
+TextBox1.Text = TextBox1.Text + "/"
+End If
+If button.Name = "Bdot" Then
+TextBox1.Text = TextBox1.Text + "."
+End If
+End Sub
+Private Sub Bclr_Click(sender As Object, e As EventArgs) Handles Bclr.Click
+TextBox1.Text = ""
+End Sub
+Private Sub Bequal_Click(sender As Object, e As EventArgs) Handles Bequal.Click
+Dim str As String = TextBox1.Text
+Dim result = New DataTable().Compute(str, Nothing)
+TextBox1.Text = result
+End Sub
+End Class
+REVERSE
+BUTTON-1 (REVERSE) CODE
+Dim numbers As String = TextBox1.Text
+Dim reversedNumber As String = StrReverse(numbers)
+TextBox2.Text = reversedNumber
+BUTTON-2 (RESET) CODE
+TextBox1.Text = ""
+TextBox2.Text = ""
+FORM VALI
+WEB.CONFIG
+<appSettings>
+<add key="ValidationSettings:UnobtrusivevalidationMode" value="None"/>
+</appSettings>
+MOBILE NO: \d{10} MINI 8 CHAR: ^.{8}$
+PICTURE BOX
+FORM-1 CODE
+ComboBox1.Items.Add("TRIANGLE")
+ComboBox1.Items.Add("SQUARE")
+ComboBox1.Items.Add("CIRCLE")
+ComboBox1.SelectedIndex = 0
+BUTTON-1 (SUBMIT) CODE
+Dim selectedImage As String = ComboBox1.SelectedItem.ToString()
+Select Case selectedImage
+Case "TRIANGLE"
+PictureBox1.Image =
+Image.FromFile("C:\Users\DELL\Downloads\SHAPES\TRI.png")
+Case "SQUARE"
+PictureBox1.Image =
+Image.FromFile("C:\Users\DELL\Downloads\SHAPES\SQ.png")
+Case "CIRCLE"
+PictureBox1.Image =
+Image.FromFile("C:\Users\DELL\Downloads\SHAPES\CIR.jpg")
+End Select
+PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+CASE CONVERSION
+BUTTON-1 (CONVERT) CODE
+Dim inputText As String = TextBox1.Text
+Dim convertedText As String = ""
+For Each ch As Char In inputText
+If Char.IsUpper(ch) Then
+convertedText &= Char.ToLower(ch)
+ElseIf Char.IsLower(ch) Then
+convertedText &= Char.ToUpper(ch)
+Else
+convertedText &= ch
+End If
+Next
+TextBox2.Text = convertedText
+EMAIL VALI
+WEB.CONFIG
+<appSettings>
+<add key="ValidationSettings:UnobtrusivevalidationMode" value="None"/>
+</appSettings>
+SHOPPING CART
+WEB.CONFIG
+<appSettings>
+<add key="ValidationSettings:UnobtrusivevalidationMode" value="None"/>
+</appSettings>
+WEBFORM1.ASPX.VB
+Public Class WebForm1
+Inherits System.Web.UI.Page
+Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs)
+Handles Me.Load
+End Sub
+Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles
+Button1.Click
+LAPTOP.Text = Label1.Text
+PLAP.Text = Label2.Text
+End Sub
+Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles
+Button2.Click
+MOBILE.Text = Label3.Text
+PMOBILE.Text = Label4.Text
+End Sub
+Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles
+Button3.Click
+TABLET.Text = Label5.Text
+PTABLET.Text = Label6.Text
+End Sub
+Protected Sub Button4_Click(sender As Object, e As EventArgs) Handles
+Button4.Click
+Dim sum As Integer = Val(PLAP.Text) + Val(PMOBILE.Text) + Val(PTABLET.Text)
+PTOTAL.Text = sum
+End Sub
+End Class
+RESUME BUILDING
+WEB.CONFIG
+<appSettings>
+<add key="ValidationSettings:UnobtrusivevalidationMode" value="None"/>
+</appSettings>
+WebForm1.aspx
+<%@ Page Language="vb" AutoEventWireup="false"
+CodeBehind="WebForm1.aspx.vb" Inherits="WebApplication1.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+margin: 0;
+padding: 0;
+}
+#form1 {
+width: 60%;
+margin: 50px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h1 {
+text-align: center;
+color: #333;
+}
+h3 {
+color: #444;
+}
+label, input, textarea {
+display: block;
+width: 90%;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+input, textarea {
+padding: 10px;
+font-size: 14px;
+border-radius: 5px;
+border: 1px solid #ccc;
+}
+input:focus, textarea:focus {
+outline: none;
+border-color: #007bff;
+}
+.button-container {
+text-align: center;
+margin-top: 20px;
+}
+#btnGenerate {
+background-color: #007bff;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}
+#btnGenerate:hover {
+background-color: #0056b3;
+}
+#lblResult {
+margin-top: 30px;
+padding: 15px;
+}
+.form-section {
+margin-bottom: 30px;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<h1>Resume Builder</h1>
+<div class="form-section">
+<h3>Personal Information</h3>
+<asp:Label ID="lblName" runat="server" Text="Full Name: "></asp:Label>
+<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+<asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
+<asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+<asp:Label ID="lblPhone" runat="server" Text="Phone Number:
+"></asp:Label>
+<asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+</div>
+<div class="form-section">
+<h3>Education</h3>
+<asp:Label ID="lblDegree" runat="server" Text="Degree: "></asp:Label>
+<asp:TextBox ID="txtDegree" runat="server"></asp:TextBox>
+<asp:Label ID="lblUniversity" runat="server" Text="University: "></asp:Label>
+<asp:TextBox ID="txtUniversity" runat="server"></asp:TextBox>
+<asp:Label ID="lblGradYear" runat="server" Text="Graduation Year:
+"></asp:Label>
+<asp:TextBox ID="txtGradYear" runat="server"></asp:TextBox>
+</div>
+<div class="form-section">
+<h3>Experience</h3>
+<asp:Label ID="lblCompany" runat="server" Text="Company Name:
+"></asp:Label>
+<asp:TextBox ID="txtCompany" runat="server"></asp:TextBox>
+<asp:Label ID="lblJobTitle" runat="server" Text="Job Title: "></asp:Label>
+<asp:TextBox ID="txtJobTitle" runat="server"></asp:TextBox>
+<asp:Label ID="lblJobDesc" runat="server" Text="Job Description:
+"></asp:Label><br />
+<asp:TextBox ID="txtJobDesc" runat="server" TextMode="MultiLine"
+Rows="5" Columns="50"></asp:TextBox>
+</div>
+<div class="form-section">
+<h3>Skills</h3>
+<asp:Label ID="lblSkills" runat="server" Text="Skills: "></asp:Label><br />
+<asp:TextBox ID="txtSkills" runat="server" TextMode="MultiLine" Rows="5"
+Columns="50"></asp:TextBox>
+</div>
+<div class="button-container">
+<asp:Button ID="btnGenerate" runat="server" Text="Generate Resume"
+OnClick="btnGenerate_Click" />
+</div>
+<asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
+</div>
+</form>
+</body>
+</html>
+WebForm1.aspx.vb
+Public Class WebForm1
+Inherits System.Web.UI.Page
+' This method will be called when the button is clicked
+Protected Sub btnGenerate_Click(ByVal sender As Object, ByVal e As EventArgs)
+' Collecting the data from the form
+Dim name As String = txtName.Text
+Dim email As String = txtEmail.Text
+Dim phone As String = txtPhone.Text
+Dim degree As String = txtDegree.Text
+Dim university As String = txtUniversity.Text
+Dim gradYear As String = txtGradYear.Text
+Dim company As String = txtCompany.Text
+Dim jobTitle As String = txtJobTitle.Text
+Dim jobDesc As String = txtJobDesc.Text
+Dim skills As String = txtSkills.Text
+' Format the resume content with a better layout
+Dim resume As String = "<div style='font-family: Arial, sans-serif; line-height: 1.6;'>"
+&
+"<h2 style='text-align: center;'>Resume</h2>" &
+"<strong>Name: </strong>" & name & "<br />" &
+"<strong>Email: </strong>" & email & "<br />" &
+"<strong>Phone: </strong>" & phone & "<br /><br />" &
+"<h3>Education</h3>" &
+"<strong>Degree: </strong>" & degree & "<br />" &
+"<strong>University: </strong>" & university & "<br />" &
+"<strong>Graduation Year: </strong>" & gradYear & "<br /><br />" &
+"<h3>Experience</h3>" &
+"<strong>Company Name: </strong>" & company & "<br />" &
+"<strong>Job Title: </strong>" & jobTitle & "<br />" &
+"<strong>Job Description: </strong><br />" & jobDesc & "<br /><br />" &
+"<h3>Skills</h3>" &
+"<strong>Skills: </strong><br />" & skills & "<br />" &
+"</div>"
+' Display the generated resume in a neat layout
+lblResult.Text = resume
+End Sub
+End Class
